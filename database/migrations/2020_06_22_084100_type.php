@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFormationsTable extends Migration
+class Type extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateFormationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Formations', function (Blueprint $table) {
+        //
+        Schema::create('types', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nom_formation')->unique();
-            $table->string('description_formation');
-            $table->softDeletes();
+            $table->string('nom_type');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -29,6 +29,6 @@ class CreateFormationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('formations');
+        //
     }
 }

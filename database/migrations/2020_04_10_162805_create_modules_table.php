@@ -15,11 +15,9 @@ class CreateModulesTable extends Migration
     {
         Schema::create('modules', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
-            $table->string('description');
-            $table->string('file');
-           // $table->boolean('download')->nullable();
+            $table->string('nom_module');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

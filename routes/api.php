@@ -42,13 +42,21 @@ Route::delete('suppG/{id}','GroupeController@SuppG');
 Route::get('searchG/{query}','GroupeController@search');
 Route::post('affectation','GroupeController@affectation');
 Route::post('affectationA','AffectationController@affectation');
-Route::get('number/{id}','AffectationController@number');
+Route::get('listegrpnonvide','AffectationController@listegrpnonvide');
+Route::post('affectationFormationGroupe','AffectationController@affectationFormationGroupe');
 
+
+
+Route::post('affectationA','AffectationController@affectation');
+
+
+Route::get('number/{id}','AffectationController@number');
+Route::get('numbers/{id}','AffectationController@numberS');
+Route::get('numberss/{id}','AffectationController@numberSS');
+Route::get('listeaff','AffectationController@listeaff');
+Route::get('listeUserGrp/{id}','AffectationController@listeUserGrp');
 
 Route::get('listesousgrp/{query}','GroupeController@listesousgrp');
-Route::post('store','ModuleController@store');
-Route::get('searchModule/{query}','ModuleController@searchModule');
-
 
 
 
@@ -71,16 +79,49 @@ Route::delete('deleteQ/{nom}','QuestionnaireController@deleteQ');
 Route::post('changepassword','UserController@changepassword');
 
 
-Route::group([    
+/*Route::group([    
       
     'prefix' => 'password'
 ], function () {    
     Route::post('create', 'PasswordResetController@create');
     Route::get('find/{token}', 'PasswordResetController@find');
     Route::post('reset', 'PasswordResetController@reset');
-});
+});*/
+
+/**********************formation**********************/
+Route::Post('addFormation','FormationController@Ajout');
+Route::get('listeF','FormationController@listeF');
+Route::get('chercherF/{nomF}','FormationController@chercherF');
+
+
+Route::put('prolonger','SessionController@prolonger');
+Route::Post('addSession','SessionController@Ajouter');
+Route::get('listeS','SessionController@listeS');
+/****************Module******************************/
+Route::get('findIdModule/{nom_module}','ModuleController@findIdModule');
+Route::Post('addModule','ModuleController@Ajout');
+//Route::get('afect','FormationController@afect');
+
+
+Route::get('listeModule','ModuleController@ListeModule');
+Route::get('chercherM/{nomM}','ModuleController@chercherM');
+
+/******************************contenu****************************/
+Route::Post('addContenu','ContenuController@Ajout');
+/*******************type***********************/
+Route::get('findIdType/{nom_type}','TypeController@findIdType');
+Route::get('listeT','TypeController@listeT');
+/***********************Module_Formation **************************/
+Route::post('affectationModuleFormation','Formation_Module_Controller@affectation');
+Route::get('listeA','Formation_Module_Controller@listeAffectation');
+
+/************************formation_session ********************************/
+Route::get('listeAffectation','Formation_sessionController@listeAffectation');
+Route::post('affectationFormationSession','Formation_sessionController@affectation');
+
 Route::post('forgot','ForgotPassword@forgot');
 Route::post('resett','PasswordResetController@resett');
+Route::get('Consulter/{id}','UserController@Consulter');
 
 
 

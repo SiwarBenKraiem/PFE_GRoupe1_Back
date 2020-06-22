@@ -11,6 +11,6 @@ class Contenu extends Model
 
     //*
     protected $fillable =
-        ['id,nom_contenu,contenu,id_type,id_module'];
-    protected $dates = ['deleted_at'];
+    ['id,nom_contenu,contenu,id_type,id_module'];
+protected $dates = ['deleted_at'];
 }
