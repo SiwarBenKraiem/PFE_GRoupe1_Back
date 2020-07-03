@@ -3,8 +3,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use App\Notifications\PasswordResetRequest;
-use App\Notifications\PasswordResetSuccess;
+//use App\Notifications\PasswordResetRequest;
+//use App\Notifications\PasswordResetSuccess;
 use App\User;
 use App\Mail\ResetPasswordMail;
 use App\PasswordReset;
@@ -21,9 +21,10 @@ class PasswordResetController extends Controller
                 'message' => 'We cant find a user with that e-mail address.'
             ], 404);
         }
+       
             $this->send($request->email);
             return response()->json([
-                'message' => 'succes check your email.'
+                'message' => 'reset  email is send.'
             ], 404);
 
     }
@@ -32,18 +33,20 @@ class PasswordResetController extends Controller
         Mail::to($email)->send(new ResetPasswordMail($token));
     }
     public function createToken($email){
+        
         $oldToken=DB::table('password_resets')->where('email',$email)->first();
         if($oldToken){
-            return $oldToken;
+            return $oldToken->token;
         }
-        $token=Str::random(60);
+        $token= Str::random(60);
         $this->saveTtoken($token,$email);
         return $token;
-    }
+        }
     public function saveTtoken($token,$email){
+
         DB::table('password_resets')->insert([
-            'email'=> $email,
-            'token' =>$token,
+            'email' => $email,
+            'token' => $token,
             'created_at' => Carbon::now()
         ]);
     }

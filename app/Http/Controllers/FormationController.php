@@ -26,6 +26,7 @@ class FormationController extends Controller
     {
         return Formation::all();
     }
+    
 
 
     Public function chercherF( $nomF)

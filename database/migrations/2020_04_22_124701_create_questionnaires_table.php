@@ -21,7 +21,7 @@ class CreateQuestionnairesTable extends Migration
            // $table->foreign('sujet_id')->references('id')->on('sujets');
 
             //$table->unsignedInteger('user-id');
-            //$table->unsignedInteger('formation-id')->nullable();
+            $table->unsignedInteger('formation-id')->nullable();
             $table->timestamps();
         });
     }

@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Questionnaire extends Model
 {
     //
-    protected $fillable=['sujet','title'];
+    protected $guarded=[];
+    //protected $fillable=['sujet','title'];
 
     public function  user()
     {

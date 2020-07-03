@@ -12,6 +12,7 @@ use Carbon\Carbon ;
 
 
 
+
 use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
@@ -29,6 +30,7 @@ class AuthController extends Controller
               'success' => true,
               'token' => $success['token'],
               'user' => $user
+              
           ]);
         } else {
        
@@ -71,7 +73,26 @@ class AuthController extends Controller
           'message' => 'Unable to Logout'
         ]);
       }
+     
      }
+     public function isconnected(Request $res)
+    {
+      if (Auth::user()) {
+       
+
+        return response()->json([
+          'success' => true
+          
+      ]);
+      }else {
+        return response()->json([
+          'success' => false
+         
+        ]);
+      }
+     
+     }
+    
     
 
 

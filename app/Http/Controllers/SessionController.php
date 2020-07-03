@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Affectation_user_groupe_session;
+use App\formation_session;
+use App\Formation;
 
 use App\Session;
 use Carbon\Carbon;
@@ -35,6 +38,18 @@ class SessionController extends Controller
     public function listeS()
     {
         return Session::all();
+    }
+    public function listeuser($user_id){
+        $affectaions= Affectation_user_groupe_session::where ('idU' ,$user_id)->select('idS')->get();
+        $session= session::whereIn('id',$affectaions)->get();
+        return $session;
+    }
+
+    public function listerformation($session_id){
+
+        $affectaions=formation_session::where ('session_id', $session_id)->select('formation_id')->get();
+        $formations=Formation::whereIn('id',$affectaions)->get();
+        return $formations;
     }
 
     public function prolonger(Request $request)

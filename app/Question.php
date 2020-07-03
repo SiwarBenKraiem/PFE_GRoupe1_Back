@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
     //
-   // protected $guarded=[];
-    protected $fillable=['id','txt_question','descriptif_reponse'];
+   protected $guarded=[];
+   
+    //protected $fillable=['id','txt_question','descriptif_reponse'];
 
 
     public function  Questionnaire()
@@ -24,6 +25,6 @@ class Question extends Model
 
     public function  Options()
     {
-        return $this->hasMany(Option::class, 'question_id');
+        return $this->hasMany(Option::class);
     }
 }

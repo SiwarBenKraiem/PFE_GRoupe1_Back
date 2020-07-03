@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use App\Questionnaire;
+use App\commentaire_module_users;
 
 class User extends Authenticatable
 {
@@ -44,6 +45,10 @@ class User extends Authenticatable
     public function questionnaire()
     {
         return $this->hasMany(Questionnaire::class);
+
+    }
+    public function commentaire(){
+        return $this->hasMany(commentaire_module_users::class);
 
     }
 

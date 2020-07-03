@@ -36,12 +36,12 @@ class ForgotPassword extends Controller
        $this->getPasswordResetPasswordRow($request)->delete();
        return response()->json([
                
-        'date' => 'password change successfully '
+        'message' => 'password change successfully '
     ]);
     }
 
 
-      
+   
        /* $email =$request->input('email');
        if(User::where('email' ,$email)->doesntExist()){
         return response([
@@ -62,7 +62,7 @@ $message->subject('Reset your password');
                
         'message' => 'check your email'
     ], 404);
-    }
+    }*/
     public function reset(Request $request){
         $token = $request ->input('token');
         if(!$passwordResets = DB::table('password_resets')->where(
@@ -86,5 +86,5 @@ $message->subject('Reset your password');
                
         'message' => 'succes'
     ]);
-    }*/
+    }
 }

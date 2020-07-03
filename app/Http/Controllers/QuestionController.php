@@ -11,6 +11,26 @@ use Illuminate\Http\Request;
 class QuestionController extends Controller
 {
     //
+    public function store(Questionnaire $questionnaire){
+        $data=request()->validate([
+            'txt_question' => 'required',
+            'descriptif_reponse' => 'required',
+            'is_true' => 'required',
+            'txt'=> 'required',
+            'questionnaire_id' => 'required',
+        ]); 
+        $question = $questionnaire->question()->create([
+
+            'txt_question' =>  $data['txt_question'],
+            'descriptif_reponse' => $data['descriptif_reponse'],
+            'questionnaire_id' => $data['questionnaire_id']
+        ]);
+        $question->Options()->createMany([
+            'txt'=> $data['txt'],
+            'is_true' => $data['is_true']
+        ]);
+
+    }
     public function storeQuestion(Request $request)
 
     {
@@ -19,7 +39,8 @@ class QuestionController extends Controller
         $question = Question::create([
             //'sujet_id' => $data['sujet_id'],
             'txt_question' => $data['txt_question'],
-            'descriptif_reponse' => $data['descriptif_reponse']
+            'descriptif_reponse' => $data['descriptif_reponse'],
+            'questionnaire_id' => $data['questionnaire_id']
         ]);
 
         foreach ($request->input() as $key => $value) {

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use function GuzzleHttp\Psr7\copy_to_string;
+use Validator;
 
 class UserController  extends Controller
 {
@@ -114,28 +115,51 @@ class UserController  extends Controller
 
     public function changepassword(Request $request)
     {
-       
-    $data = $request->all();
-
-        if(!\Hash::check($data['old_password'], auth()->user()->password)){
-
-             return back()->with('error','You have entered wrong password');
-
-        }else{
-
-            $user = Auth::user();
-            $user->password = bcrypt($request->get('new_password'));
+      /* $this->validate($request,[
+           'oldpassword' => 'required',
+           'password' => 'required|confirmed'
+       ]);
+       $hashedpassword=Auth::user()->password;
+        
+        
+       if($user){
+        if(Hash::check($request['oldpassword'],$hashedpassword))
+        {
+            $user=User::find(Auth::id());
+            $user->password= Hash::make($request->password);
             $user->save();
             return response()->json([
-                   
+               
                 'message' => 'password change'
               ]);
-
         }
-       
+        else {
+            return response()->json([
+                
+                'message' => 'Erreur'
+              ]);
+        }
+        }
+       */
+      $user = Auth::getUser();
+        $this->validator($request->all())->validate();
+        if (Hash::check($request->get('current_password'), $user->password)) {
+            $user->password = $request->get('new_password');
+            $user->save();
+            return redirect($this->redirectTo)->with('success', 'Password change successfully!');
+        } else {
+            return redirect()->back()->withErrors('Current password is incorrect');
+        }
 
 
 
+    }
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'current_password' => 'required',
+            'new_password' => 'required|min:6|confirmed',
+        ]);
     }
     public function Consulter($id){
         return User::findOrFail($id);

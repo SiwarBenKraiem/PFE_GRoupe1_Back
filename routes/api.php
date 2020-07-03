@@ -18,11 +18,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });*/
 //Route::group(['prefix' => 'v1'], function () {
 Route::Post('login','AuthController@login');
-Route::get('logout','AuthController@logout');
-Route::Post('Register','AuthController@Register');
+Route::get('logout','AuthController@logout')->middleware('auth:api');
+Route::Post('isconnected','AuthController@isconnected');
 Route::Post('forgot_password',' ForgotPasswordController@password');
 Route::get('listeUser','UserController@liste');
-Route::post('add','UserController@Ajout');
+Route::post('Ajout','UserController@Ajout');
 Route::post('import','UserController@import');
 Route::get('search/{query}','UserController@search');
 Route::delete('supp/{id}','UserController@supp');
@@ -67,7 +67,7 @@ Route::delete('suppS/{id}','SpController@suppS');
 
 Route::Post('AjouterSujet','SujetController@AjouterSujet');
 Route::get('ListerSujet','SujetController@ListerSujet');
-Route::Post('storeQuestion','QuestionController@storeQuestion');
+Route::Post('store','QuestionController@store');
 Route::Post('ajoutoption','OptionController@ajoutoption');
 Route::Post('storeQuestionnaire','QuestionnaireController@storeQuestionnaire');
 Route::put('update/{id}','QuestionnaireController@update');
@@ -77,16 +77,11 @@ Route::get('listqst','QuestionController@listqst');
 Route::get('Listerf','FormationController@Listerf');
 Route::delete('deleteQ/{nom}','QuestionnaireController@deleteQ');
 Route::post('changepassword','UserController@changepassword');
+Route::get('listeuser/{id}','SessionController@listeuser');
+Route::get('listerformation/{id}','SessionController@listerformation');
 
 
-/*Route::group([    
-      
-    'prefix' => 'password'
-], function () {    
-    Route::post('create', 'PasswordResetController@create');
-    Route::get('find/{token}', 'PasswordResetController@find');
-    Route::post('reset', 'PasswordResetController@reset');
-});*/
+
 
 /**********************formation**********************/
 Route::Post('addFormation','FormationController@Ajout');
@@ -101,6 +96,7 @@ Route::get('listeS','SessionController@listeS');
 Route::get('findIdModule/{nom_module}','ModuleController@findIdModule');
 Route::Post('addModule','ModuleController@Ajout');
 //Route::get('afect','FormationController@afect');
+Route::Post('commenter','CommentaireController@commenter');
 
 
 Route::get('listeModule','ModuleController@ListeModule');
@@ -120,6 +116,7 @@ Route::get('listeAffectation','Formation_sessionController@listeAffectation');
 Route::post('affectationFormationSession','Formation_sessionController@affectation');
 
 Route::post('forgot','ForgotPassword@forgot');
+
 Route::post('resett','PasswordResetController@resett');
 Route::get('Consulter/{id}','UserController@Consulter');
 
