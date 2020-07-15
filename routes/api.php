@@ -77,7 +77,7 @@ Route::get('listqst','QuestionController@listqst');
 Route::get('Listerf','FormationController@Listerf');
 Route::delete('deleteQ/{nom}','QuestionnaireController@deleteQ');
 Route::post('changepassword','UserController@changepassword');
-Route::get('listeuser/{id}','SessionController@listeuser');
+Route::get('listeusersession/{id}','SessionController@listeusersession');
 Route::get('listerformation/{id}','SessionController@listerformation');
 
 

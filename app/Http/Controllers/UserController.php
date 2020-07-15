@@ -113,6 +113,11 @@ class UserController  extends Controller
         //return User::withTrashed()->get();
     }
 
+    
+
+
+
+
     public function changepassword(Request $request)
     {
       /* $this->validate($request,[
@@ -161,6 +166,8 @@ class UserController  extends Controller
             'new_password' => 'required|min:6|confirmed',
         ]);
     }
+
+
     public function Consulter($id){
         return User::findOrFail($id);
     }

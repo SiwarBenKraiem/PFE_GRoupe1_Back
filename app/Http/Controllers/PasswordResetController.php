@@ -24,7 +24,7 @@ class PasswordResetController extends Controller
        
             $this->send($request->email);
             return response()->json([
-                'message' => 'reset  email is send.'
+                'success' => 'reset  email is send.'
             ], 404);
 
     }
@@ -51,7 +51,5 @@ class PasswordResetController extends Controller
         ]);
     }
 
-    public function changer(Request $request){
-        
-    }
+    
 }

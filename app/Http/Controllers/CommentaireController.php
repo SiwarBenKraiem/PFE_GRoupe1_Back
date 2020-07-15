@@ -5,6 +5,9 @@ use App\Module;
 use App\User;
 use App\commentaire_module_users;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
+
+
 
 use Illuminate\Http\Request;
 

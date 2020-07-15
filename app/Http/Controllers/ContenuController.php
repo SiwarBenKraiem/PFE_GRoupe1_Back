@@ -42,5 +42,13 @@ class ContenuController extends Controller
 
 return  $all;	       
 }
+   public function consultercontenu(Request $req)
+   {
+
+
+   }
+
+
+
 }
     

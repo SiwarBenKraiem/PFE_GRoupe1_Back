@@ -39,10 +39,15 @@ class SessionController extends Controller
     {
         return Session::all();
     }
-    public function listeuser($user_id){
-        $affectaions= Affectation_user_groupe_session::where ('idU' ,$user_id)->select('idS')->get();
-        $session= session::whereIn('id',$affectaions)->get();
-        return $session;
+    public function listeusersession($user_id){
+        //$access_token = $user_id->header('Authorization');
+
+       $affectaions= Affectation_user_groupe_session::where ('idU' ,$user_id)->select('idS')->get();
+        $session= session::whereIn('id',$affectaions)->get('nom_session');
+    return $session;
+       // dd($user_id);   
+
+
     }
 
     public function listerformation($session_id){
@@ -67,6 +72,7 @@ class SessionController extends Controller
 
 return $update;
     }
+
 
 
 }

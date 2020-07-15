@@ -22,6 +22,7 @@ class FormationController extends Controller
             return 1;}
         else return 0;
     }
+    
     public function listeF()
     {
         return Formation::all();
