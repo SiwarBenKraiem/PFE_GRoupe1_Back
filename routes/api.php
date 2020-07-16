@@ -77,8 +77,8 @@ Route::get('listqst','QuestionController@listqst');
 Route::get('Listerf','FormationController@Listerf');
 Route::delete('deleteQ/{nom}','QuestionnaireController@deleteQ');
 Route::post('changepassword','UserController@changepassword');
-Route::get('listeusersession/{id}','SessionController@listeusersession');
-Route::get('listerformation/{id}','SessionController@listerformation');
+Route::get('listeusersession','SessionController@listeusersession')->middleware('auth:api');
+Route::get('listerformationsession/{id}','SessionController@listerformationsession');
 
 
 

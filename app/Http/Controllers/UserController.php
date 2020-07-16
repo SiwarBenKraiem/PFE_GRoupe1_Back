@@ -120,7 +120,7 @@ class UserController  extends Controller
 
     public function changepassword(Request $request)
     {
-      /* $this->validate($request,[
+       $this->validate($request,[
            'oldpassword' => 'required',
            'password' => 'required|confirmed'
        ]);
@@ -145,8 +145,8 @@ class UserController  extends Controller
               ]);
         }
         }
-       */
-      $user = Auth::getUser();
+       
+     /* $user = Auth::getUser();
         $this->validator($request->all())->validate();
         if (Hash::check($request->get('current_password'), $user->password)) {
             $user->password = $request->get('new_password');
@@ -154,7 +154,7 @@ class UserController  extends Controller
             return redirect($this->redirectTo)->with('success', 'Password change successfully!');
         } else {
             return redirect()->back()->withErrors('Current password is incorrect');
-        }
+        }*/
 
 
 
